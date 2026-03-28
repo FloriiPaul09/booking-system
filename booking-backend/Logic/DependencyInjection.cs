@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +16,15 @@ namespace Logic
                 options.UseNpgsql(configuration
                     .GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();    
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IServiceRepository, ServiceRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
             return services;
         }
+
     }
 }
  
