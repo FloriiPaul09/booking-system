@@ -1,6 +1,10 @@
 ﻿using Data;
 using Data.Repositories;
+using FluentValidation;
 using Logic.Mappers;
+using Logic.Models;
+using Logic.Services;
+using Logic.Validators;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +28,9 @@ namespace Logic
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //Service dependencies injection
+            services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<ICustomerService, CustomerService>();    
+            services.AddScoped<IServiceService, ServiceService>();
 
             //Mapper dependencies injection
             services.AddAutoMapper(cfg =>
@@ -34,6 +41,9 @@ namespace Logic
             });
 
             //Validator dependencies injection
+            services.AddScoped<IValidator<AppointmentModel>, AppointmentValidator>();
+            services.AddScoped<IValidator<CustomerModel>, CustomerValidator>();
+            services.AddScoped<IValidator<ServiceModel>, ServiceValidator>();
 
 
             return services;
