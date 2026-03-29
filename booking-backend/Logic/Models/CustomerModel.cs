@@ -1,6 +1,6 @@
-﻿namespace Data.Entities
+﻿namespace Logic.Models
 {
-    public class Customer
+    public class CustomerModel
     {
         public int Id { get; set; }
 
@@ -9,6 +9,5 @@
         public string Email { get; set; } = string.Empty;
 
         public string Phone { get; set; } = string.Empty;
-
     }
 }
